@@ -32,6 +32,16 @@
       font-size: 16px;
       color: #555;
     }
+    button {
+      margin-top: 15px;
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
@@ -40,13 +50,14 @@
   <script>
     setTimeout(() => {
       window.open('', '_self'); window.close();
-    }, 2000);
+    }, 4000); // Increased to 4 seconds
   </script>
 </head>
 <body>
-  <div class="card">
+  <div class="card" role="alert">
     <h1>⚠️ Already Marked</h1>
     <p>This student has already been marked for this week.</p>
+    <button onclick="window.open('', '_self'); window.close();">Close Tab</button>
   </div>
 </body>
 </html>

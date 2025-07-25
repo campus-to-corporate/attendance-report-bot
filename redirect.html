@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 25px 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #3498db;
+    }
+    p {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Redirecting...</h2>
+    <p>Please wait while we process your response.</p>
+  </div>
+
+  <script>
+    // Parse status from URL
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+
+    // ✅ CORRECTED: Actual GitHub Pages URL
+    const baseURL = "https://campus-to-corporate.github.io/attendance-report";
+
+    const pages = {
+      "Present": `${baseURL}/confirmation.html`,
+      "Absent": `${baseURL}/confirmation.html`,
+      "AlreadyMarked": `${baseURL}/already_marked.html`
+    };
+
+    // Redirect to the appropriate page
+    if (status && pages[status]) {
+      setTimeout(() => {
+        window.location.replace(pages[status]);
+      }, 100);
+    } else {
+      document.querySelector("h2").innerText = "⚠️ Invalid Status";
+      document.querySelector("p").innerText = "We couldn't process your request.";
+    }
+  </script>
+</body>
+</html>

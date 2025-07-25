@@ -2,62 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Response Recorded</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Marked</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #4a90e2, #8e44ad);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f9f1; /* Light mint green */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
     }
-    .card {
+    .container {
       background: white;
-      padding: 30px 40px;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      padding: 40px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       text-align: center;
-      max-width: 400px;
-      animation: fadeIn 0.4s ease-in-out;
+      max-width: 90%;
+      width: 400px;
     }
-    h1 {
-      color: #2ecc71;
-      font-size: 28px;
-      margin-bottom: 10px;
+    h2 {
+      color: #28a745;
+      margin-bottom: 12px;
     }
     p {
       font-size: 16px;
+      color: #333;
+      margin: 10px 0;
+    }
+    .small-note {
+      margin-top: 18px;
+      font-size: 14px;
       color: #555;
     }
     button {
-      margin-top: 15px;
-      background: #2ecc71;
+      margin-top: 14px;
+      background-color: #28a745;
       color: white;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
-      cursor: pointer;
       font-size: 15px;
+      cursor: pointer;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    button:hover {
+      background-color: #218838;
     }
   </style>
-  <script>
-    setTimeout(() => {
-      window.open('', '_self'); window.close();
-    }, 4000); // Increased to 4 seconds
-  </script>
 </head>
 <body>
-  <div class="card" role="alert">
-    <h1>✅ Response Recorded</h1>
-    <p>Thank you! Your attendance has been marked.</p>
-    <button onclick="window.open('', '_self'); window.close();">Close Tab</button>
+  <div class="container">
+    <h2>✅ Attendance Marked</h2>
+    <p id="msg">Thank you. The attendance has been successfully recorded.</p>
+    <p class="small-note">You may now safely close this tab.</p>
+    <button onclick="window.close()">Close</button>
   </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const name = params.get("name");
+    const type = params.get("type");
+    if (name && type) {
+      const msg = document.getElementById("msg");
+      msg.textContent = `Attendance for ${type === "batch" ? "Batch" : ""} ${name} has been marked successfully.`;
+    }
+    setTimeout(() => {
+      window.close();
+    }, 5000);
+  </script>
 </body>
 </html>
